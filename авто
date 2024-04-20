@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import random
 
-TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
+TOKEN = "7059992777:AAHGrWiL9qNUREMCmiQKCcam4WQoQGIcKXU"
 
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Привет! Я загадал число от 1 до 100. Попробуй угадать!")
