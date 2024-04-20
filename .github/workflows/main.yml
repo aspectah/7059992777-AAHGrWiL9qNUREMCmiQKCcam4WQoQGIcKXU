@@ -1,1 +1,32 @@
-
+- имя: /start 
+ с: 7059992777:AAHGrWiL9qNUREMCmiQKCcam4WQoQGIcKXU
+  Токеном # для репозитория. Может быть передан с использованием {{ secrets.GITHUB_TOKEN }}
+ токен репозитория: 
+ # Комментарий к публикации по первому вопросу пользователя 
+ сообщение о проблеме: # необязательно
+ # Комментарий к публикации по первому запросу пользователя на удаление 
+ pr-сообщение: # необязательно
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+import random
+TOKEN = "7059992777:AAHGrWiL9qNUREMCmiQKCcam4WQoQGIcKXU"
+def start(update: Update, context: CallbackContext):
+    update.message.reply_text("Привет! Я загадал число от 1 до 100. Попробуй угадать!")
+def guess_number(update: Update, context: CallbackContext):
+    user_number = int(update.message.text)
+    if user_number == context.bot_data['number']:
+        update.message.reply_text("Поздравляю, ты угадал число!")
+    elif user_number < context.bot_data['number']:
+        update.message.reply_text("Загаданное число больше. Попробуй еще раз!")
+    else:
+        update.message.reply_text("Загаданное число меньше. Попробуй еще раз!")
+def main():
+    updater = Updater(TOKEN)
+    dispatcher = updater.dispatcher
+    dispatcher.bot_data['number'] = random.randint(1, 100)
+    dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, guess_number))
+    updater.start_polling()
+    updater.idle()
+if __name__ == '__main__':
+    main()
