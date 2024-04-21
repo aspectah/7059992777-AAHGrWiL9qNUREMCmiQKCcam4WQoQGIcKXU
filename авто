@@ -11,7 +11,7 @@ def send_welcome(message):
 
 
 @bot.message_handler(func=lambda message: True)
-def get_message(message):
+def echo_all(message):
     bot.reply_to(message, "найти владельца?")
     markup=types.InlineKeyboardMarkup()
     markup.add(types.InloneKeyboardButton('да',vehicles = [
