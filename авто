@@ -1,3 +1,4 @@
+import types
 
 import telebot
 
@@ -13,7 +14,8 @@ def send_welcome(message):
 def echo_all(message):
     bot.reply_to(message, "найти владельца?")
     markup=types.InlineKeyboardMarkup()
-    markup.add(types.InloneKeyboardButton('да',vehicles = [
+    markup.add(types.InloneKeyboardButton('да',
+Vehicles = [
     {"номер_автомобиля": "А124ВС", "имя": "Иван", "фамилия": "Иванов", "номер_телефона": "123456789"},
     {"номер_автомобиля": "О777ОО", "имя": "Петр", "фамилия": "Петров", "номер_телефона": "987654321"},
     {"номер_автомобиля": "М555ММ", "имя": "Мария", "фамилия": "Сидорова", "номер_телефона": "555555555"},
